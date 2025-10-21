@@ -6,13 +6,10 @@ import io.restassured.http.ContentType
 import nl.rabobank.org_users_rest.controller.RolesController
 import nl.rabobank.org_users_rest.entity.Role
 import org.hamcrest.Matchers.hasSize
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection
 import org.testcontainers.containers.PostgreSQLContainer
@@ -23,13 +20,13 @@ import org.testcontainers.junit.jupiter.Container
  *
  * @see {@link https://testcontainers.com/guides/testing-spring-boot-rest-api-using-testcontainers/#_write_test_for_api_endpoint}
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RolesControllerIntegrationTest {
     @LocalServerPort
     private val port: Int? = null
 
-    companion object  {
+    companion object {
         @Container
         @ServiceConnection
         var postgres: PostgreSQLContainer<*> = PostgreSQLContainer(
